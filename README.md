@@ -1,5 +1,9 @@
 # Little Lemon Dinner Menu
 
+This is the final project requirements for Advanced Programming in Kotlin - Meta
+https://www.coursera.org/learn/advanced-programming-in-kotlin/
+
+
 ## Task 1
 
 Currently, a list of products is declared inside the onCreate function of MainActivity.kt, however, it may be used from any part of the app.
