@@ -1,11 +1,23 @@
 package com.littlelemon.menu
 
-import org.junit.Before
 import org.junit.Test
 
 class FilterHelperTest {
 
-    private val productsList = listOf(
+    private val sampleProductsList = mutableListOf(
+        ProductItem(title = "Black tea", price = 3.00, category = "Drinks", R.drawable.black_tea),
+        ProductItem(title = "Croissant", price = 7.00, category = "Dessert", R.drawable.croissant),
+        ProductItem(title = "Bouillabaisse", price = 20.00, category = "Food", R.drawable.bouillabaisse)
+    )
+
+    @Test
+    fun filterProducts_filterTypeDessert_croissantReturned() {
+        val filteredList = FilterHelper().filterProducts(FilterType.Dessert, sampleProductsList)
+        assert(filteredList.size == 1)
+        assert(filteredList[0].title == "Croissant")
+    }
+
+    private val sampleProductsList2 = listOf(
         ProductItem("Black tea", 3.00, "Drinks", R.drawable.black_tea),
         ProductItem("Green tea", 3.00, "Drinks", R.drawable.green_tea),
         ProductItem("Espresso", 5.00, "Drinks", R.drawable.espresso),
@@ -25,26 +37,25 @@ class FilterHelperTest {
 
     @Test
     fun filterProductsByAll(): Unit {
-        val filteredList = FilterHelper().filterProducts(FilterType.All, productsList)
-        assert(filteredList == productsList)
-
+        val filteredList = FilterHelper().filterProducts(FilterType.All, sampleProductsList2)
+        assert(filteredList == sampleProductsList2)
     }
 
     @Test
     fun filterProductsByDessert() {
-        val filteredList = FilterHelper().filterProducts(FilterType.Dessert, productsList)
+        val filteredList = FilterHelper().filterProducts(FilterType.Dessert, sampleProductsList2)
         assert(filteredList.size == 3)
     }
 
     @Test
     fun filterProductsByDrinks() {
-        val filteredList = FilterHelper().filterProducts(FilterType.Drinks, productsList)
+        val filteredList = FilterHelper().filterProducts(FilterType.Drinks, sampleProductsList2)
         assert(filteredList.size == 5)
     }
 
     @Test
     fun filterProductsByFood() {
-        val filteredList = FilterHelper().filterProducts(FilterType.Food, productsList)
+        val filteredList = FilterHelper().filterProducts(FilterType.Food, sampleProductsList2)
         assert(filteredList.size == 5)
     }
 

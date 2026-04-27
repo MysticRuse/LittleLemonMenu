@@ -11,10 +11,10 @@ class ProductActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val productItemExtras = intent.extras
         if (productItemExtras != null) {
-            val title = productItemExtras.getString("title") ?: ""
-            val price = productItemExtras.getDouble("price")
-            val category = productItemExtras.getString("category") ?: ""
-            val image = productItemExtras.getInt("image")
+            val title = productItemExtras.getString(KEY_TITLE) ?: ""
+            val price = productItemExtras.getDouble(KEY_PRICE)
+            val category = productItemExtras.getString(KEY_CATEGORY) ?: ""
+            val image = productItemExtras.getInt(KEY_IMAGE)
 
             val productItem = ProductItem(title, price, category, image)
             setContent { ProductDetails(productItem) }
@@ -23,13 +23,18 @@ class ProductActivity : ComponentActivity() {
     }
 
     companion object {
+        const val KEY_TITLE = "title"
+        const val KEY_PRICE = "price"
+        const val KEY_IMAGE = "image"
+        const val KEY_CATEGORY = "category"
+
         fun newIntent(activity: MainActivity, productItem: ProductItem): Intent {
             val intent = Intent(activity, ProductActivity::class.java)
             intent.apply {
-                putExtra("title", productItem.title)
-                putExtra("price", productItem.price)
-                putExtra("category", productItem.category)
-                putExtra("image", productItem.image)
+                putExtra(KEY_TITLE, productItem.title)
+                putExtra(KEY_PRICE, productItem.price)
+                putExtra(KEY_CATEGORY, productItem.category)
+                putExtra(KEY_IMAGE, productItem.image)
             }
             return intent
         }

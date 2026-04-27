@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ProductsGrid(
     products: Products,
-    onProductClick: (ProductItem) -> Unit,
+    startProductActivity: (ProductItem) -> Unit,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -44,7 +44,7 @@ fun ProductsGrid(
                         contentScale = ContentScale.Fit,
                         modifier = Modifier
                             .clickable {
-                                onProductClick(productItem)
+                                startProductActivity(productItem)
                             }
                             .fillMaxWidth()
                             .height(120.dp)
